@@ -1,4 +1,4 @@
-import { Monitor, Smartphone, Tv, Box, Laptop } from "lucide-react";
+import { Tv, Box, Laptop } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,14 +9,14 @@ export default function DeviceSupport() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#FF6B00] mb-3 block">
-            SUPPORTED IPTV DEVICES
+          <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-3 block">
+            MULTI-DEVICE IPTV COMPATIBILITY
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-black tracking-tight">
-            Watch the Best IPTV Service on{" "}
+            Stream SofaIPTV Seamlessly on{" "}
             <Link
               href="/installation"
-              className="text-[#FF6B00] hover:text-orange-400 transition-colors"
+              className="text-indigo-600 hover:text-cyan-600 transition-colors"
             >
               All Your Favorite Devices
             </Link>
@@ -26,12 +26,13 @@ export default function DeviceSupport() {
         {/* Center Image Display */}
         <div className="relative mx-auto max-w-[800px] mb-16 group">
           {/* Subtle background glow for the image */}
-          <div className="absolute inset-0 bg-orange-400/10 blur-[80px] rounded-full scale-90 -z-10 group-hover:bg-orange-400/20 transition-all duration-700"></div>
+          <div className="absolute inset-0 bg-indigo-500/10 blur-[80px] rounded-full scale-90 -z-10 group-hover:bg-indigo-500/20 transition-all duration-700"></div>
           
           <div className="relative overflow-hidden rounded-2xl border border-black/10 bg-white shadow-xl transition-transform duration-500 hover:scale-[1.02]">
             <Image
-              src="/devices-banner.webp"
-              alt="Supported IPTV Devices - Smart TV, Laptop, Smartphone"
+              src="/sofa-devices-banner.webp"
+              alt="Multi-device IPTV streaming compatibility on Smart TVs, Firestick, PC and Mobile with SofaIPTV"
+              title="SofaIPTV Multi-Device Streaming Compatibility"
               width={1200}
               height={500}
               sizes="(max-width: 1024px) 100vw, 800px"
@@ -45,62 +46,62 @@ export default function DeviceSupport() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
           {/* Card 1 */}
-          <div className="relative bg-white rounded-2xl p-8 border-y border-r border-slate-200 border-l-4 border-l-[#FF6B00] shadow-lg hover:shadow-xl hover:border-orange-200 hover:border-l-[#FF6B00] transition-all duration-300 group overflow-hidden">
-            <div className="h-12 w-12 rounded-xl bg-orange-50 text-[#FF6B00] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 relative z-10">
+          <div className="relative bg-white rounded-2xl p-8 border-y border-r border-slate-200 border-l-4 border-l-indigo-600 shadow-lg hover:shadow-xl hover:border-indigo-200 hover:border-l-indigo-600 transition-all duration-300 group overflow-hidden">
+            <div className="h-12 w-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 relative z-10">
               <Tv className="h-6 w-6 stroke-[2.5]" />
             </div>
             <h3 className="text-xl font-bold text-black mb-3">
-              Smart TVs, Android Boxes & Firestick
+              Smart TVs, Android Boxes &amp; Firestick
             </h3>
             <p className="text-slate-600 leading-relaxed text-sm">
-              Our premium IPTV subscription is fully compatible with Samsung and LG Smart TVs, Amazon Firestick, Android TV boxes, and smartphones. Enjoy buffer-free live TV on any screen using our simple{" "}
+              SofaIPTV delivers high-performance streaming across Amazon Fire TV Stick, Google TV, Samsung Tizen, LG webOS, and Android TV boxes. Follow our step-by-step{" "}
               <Link
                 href="/installation"
-                className="text-[#FF6B00] font-semibold hover:text-orange-400 transition-colors"
+                className="text-indigo-600 font-semibold hover:text-cyan-600 transition-colors"
               >
                 installation guide
-              </Link>
-              .
+              </Link>{" "}
+              for rapid, zero-hassle activation.
             </p>
           </div>
 
           {/* Card 2 */}
-          <div className="relative bg-white rounded-2xl p-8 border-y border-r border-slate-200 border-l-4 border-l-[#FF6B00] shadow-lg hover:shadow-xl hover:border-orange-200 hover:border-l-[#FF6B00] transition-all duration-300 group overflow-hidden">
-            <div className="h-12 w-12 rounded-xl bg-orange-50 text-[#FF6B00] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 relative z-10">
+          <div className="relative bg-white rounded-2xl p-8 border-y border-r border-slate-200 border-l-4 border-l-indigo-600 shadow-lg hover:shadow-xl hover:border-indigo-200 hover:border-l-indigo-600 transition-all duration-300 group overflow-hidden">
+            <div className="h-12 w-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 relative z-10">
               <Box className="h-6 w-6 stroke-[2.5]" />
             </div>
             <h3 className="text-xl font-bold text-black mb-3">
-              MAG Devices & STB Emulators
+              MAG Boxes &amp; Dedicated Hardware
             </h3>
             <p className="text-slate-600 leading-relaxed text-sm">
-              Connect your MAG box or STB emulator instantly. Just provide your MAC address, and we will send you our high-speed IPTV portal for access to thousands of live channels and our{" "}
+              Experience native hardware portal streaming on your MAG box or Formuler device. Provide your device MAC address during order setup, and we instantly configure your high-speed SofaIPTV portal for immediate access to our{" "}
               <Link
                 href="/channels"
-                className="text-[#FF6B00] font-semibold hover:text-orange-400 transition-colors"
+                className="text-indigo-600 font-semibold hover:text-cyan-600 transition-colors"
               >
-                VOD library
+                full VOD library
               </Link>
               .
             </p>
           </div>
 
           {/* Card 3 */}
-          <div className="relative bg-white rounded-2xl p-8 border-y border-r border-slate-200 border-l-4 border-l-[#FF6B00] shadow-lg hover:shadow-xl hover:border-orange-200 hover:border-l-[#FF6B00] transition-all duration-300 group overflow-hidden">
-            <div className="h-12 w-12 rounded-xl bg-orange-50 text-[#FF6B00] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 relative z-10">
+          <div className="relative bg-white rounded-2xl p-8 border-y border-r border-slate-200 border-l-4 border-l-indigo-600 shadow-lg hover:shadow-xl hover:border-indigo-200 hover:border-l-indigo-600 transition-all duration-300 group overflow-hidden">
+            <div className="h-12 w-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 relative z-10">
               <Laptop className="h-6 w-6 stroke-[2.5]" />
             </div>
             <h3 className="text-xl font-bold text-black mb-3">
-              Windows & Mac Computers
+              Smartphones, Tablets, Mac &amp; Windows PC
             </h3>
             <p className="text-slate-600 leading-relaxed text-sm">
-              Stream live sports and 4K movies directly on your computer. Whether you use Windows or Mac, you can easily watch our IPTV service using popular{" "}
+              Never miss a live match or movie night while away from your living room. SofaIPTV streams smoothly on iOS, Android smartphones, iPads, and PCs using top{" "}
               <Link
                 href="/installation"
-                className="text-[#FF6B00] font-semibold hover:text-orange-400 transition-colors"
+                className="text-indigo-600 font-semibold hover:text-cyan-600 transition-colors"
               >
                 IPTV players
               </Link>{" "}
-              like VLC or IPTV Smarters Pro.
+              such as TiviMate, IPTV Smarters Pro, and XCIPTV.
             </p>
           </div>
 

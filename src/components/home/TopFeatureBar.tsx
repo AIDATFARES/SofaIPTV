@@ -5,37 +5,37 @@ import { Tv, Film, ShieldCheck, Zap, Headphones } from "lucide-react";
 
 export default function TopFeatureBar() {
   const stats = [
-    { value: 7, label: "In Business", prefix: "", suffix: " Years" },
-    { value: 7500, label: "Satisfied customers", prefix: "+", suffix: "" },
-    { value: 120000, label: "Films & Series", prefix: "+", suffix: "" },
-    { value: 50000, label: "Channels", prefix: "+", suffix: "" },
+    { value: 7, label: "Years in IPTV Streaming", prefix: "", suffix: " Years" },
+    { value: 9500, label: "Active IPTV Subscribers", prefix: "+", suffix: "" },
+    { value: 200000, label: "Movies & Series (VOD)", prefix: "+", suffix: "" },
+    { value: 50000, label: "Live IPTV Channels", prefix: "+", suffix: "" },
   ];
 
   const highlights = [
     {
       icon: Tv,
-      title: "50,000+ Channels",
-      desc: "150+ Countries 🇺🇸🇬🇧🇨🇦",
+      title: "50,000+ Live Channels",
+      desc: "150+ Countries & Regions",
     },
     {
       icon: Film,
-      title: "200,000+ VOD",
-      desc: "Movies & Series 4K",
+      title: "200,000+ VOD Titles",
+      desc: "4K & FHD On Demand",
     },
     {
       icon: ShieldCheck,
-      title: "99.99% Uptime",
-      desc: "Anti-Buffer 10.0",
+      title: "Anti-Freeze v8.2",
+      desc: "99.9% Reliable Uptime",
     },
     {
       icon: Zap,
-      title: "60 FPS 4K Ultra HD",
-      desc: "Crystal Clear Sports",
+      title: "Ultra HD & 60 FPS",
+      desc: "Live Sports & PPV Events",
     },
     {
       icon: Headphones,
-      title: "24/7 Live Support",
-      desc: "WhatsApp & Email",
+      title: "24/7 Priority Support",
+      desc: "Instant WhatsApp Help",
     },
   ];
 
@@ -57,9 +57,9 @@ export default function TopFeatureBar() {
             return (
               <div
                 key={index}
-                className="bg-white/90 border border-black/10 rounded-xl p-3.5 sm:p-4 flex items-center gap-3.5 hover:border-orange-500/40 transition-all duration-300 group"
+                className="bg-white/90 border border-black/10 rounded-xl p-3.5 sm:p-4 flex items-center gap-3.5 hover:border-indigo-500/40 hover:shadow-md transition-all duration-300 group"
               >
-                <div className="p-2.5 rounded-lg bg-orange-500/10 border border-orange-500/20 text-orange-400 group-hover:scale-110 transition-transform shrink-0">
+                <div className="p-2.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 group-hover:scale-110 transition-transform shrink-0">
                   <Icon className="w-5 h-5" strokeWidth={2} />
                 </div>
                 <div className="min-w-0">

@@ -19,21 +19,30 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = blogPosts.find((p) => p.slug === resolvedParams.slug);
 
   if (!post) {
-    return { title: 'Post Not Found | IPTV Fiesta' };
+    return { title: 'SofaIPTV - Post Not Found' };
   }
 
   return {
-    title: post.title,
+    title: `SofaIPTV - ${post.title}`,
     description: post.description,
     alternates: {
       canonical: `/blog/${post.slug}`,
     },
     openGraph: {
-      title: post.title,
+      title: `SofaIPTV - ${post.title}`,
       description: post.description,
       url: `/blog/${post.slug}`,
       type: 'article',
-      images: post.coverImage ? [{ url: post.coverImage }] : undefined,
+      images: post.coverImage ? [{
+        url: post.coverImage,
+        alt: `${post.title} - SofaIPTV Guide`,
+      }] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `SofaIPTV - ${post.title}`,
+      description: post.description,
+      images: post.coverImage ? [post.coverImage] : undefined,
     },
   };
 }
@@ -79,7 +88,12 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     "@type": "Article",
     "headline": post.title,
     "description": post.description,
-    "image": post.coverImage ? `https://www.fiestaiptv.shop${post.coverImage}` : undefined,
+    "image": post.coverImage ? {
+      "@type": "ImageObject",
+      "url": `https://www.sofaiptv.site${post.coverImage}`,
+      "caption": `${post.title} - SofaIPTV Guide`,
+      "description": post.description,
+    } : undefined,
     "datePublished": post.date,
     "author": {
       "@type": "Organization",
@@ -87,12 +101,12 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     },
     "publisher": {
       "@type": "Organization",
-      "name": "IPTV FIESTA",
-      "url": "https://www.fiestaiptv.shop"
+      "name": "SofaIPTV",
+      "url": "https://www.sofaiptv.site"
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://www.fiestaiptv.shop/blog/${post.slug}`
+      "@id": `https://www.sofaiptv.site/blog/${post.slug}`
     }
   };
 
@@ -104,19 +118,19 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://www.fiestaiptv.shop"
+        "item": "https://www.sofaiptv.site"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Blog",
-        "item": "https://www.fiestaiptv.shop/blog"
+        "item": "https://www.sofaiptv.site/blog"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": post.title,
-        "item": `https://www.fiestaiptv.shop/blog/${post.slug}`
+        "item": `https://www.sofaiptv.site/blog/${post.slug}`
       }
     ]
   };
@@ -135,39 +149,45 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   } : null;
 
   const markdownComponents = {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     h1: () => null,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    h2: ({ node, ...props }: any) => <h2 className="text-2xl font-bold mt-12 mb-6 text-on-surface" {...props} />,
+    h2: ({ node: _node, ...props }: any) => <h2 className="text-2xl sm:text-3xl font-bold mt-12 mb-6 text-black" {...props} />,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    h3: ({ node, ...props }: any) => <h3 className="text-xl font-semibold mt-8 mb-4 text-on-surface" {...props} />,
+    h3: ({ node: _node, ...props }: any) => <h3 className="text-xl sm:text-2xl font-semibold mt-8 mb-4 text-black" {...props} />,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    p: ({ node, ...props }: any) => <p className="mb-6 leading-relaxed" {...props} />,
+    p: ({ node: _node, ...props }: any) => <p className="mb-6 leading-relaxed text-slate-700" {...props} />,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ul: ({ node, ...props }: any) => <ul className="list-disc pl-6 mb-6 space-y-2" {...props} />,
+    ul: ({ node: _node, ...props }: any) => <ul className="list-disc pl-6 mb-6 space-y-2 text-slate-700 marker:text-indigo-600" {...props} />,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ol: ({ node, ...props }: any) => <ol className="list-decimal pl-6 mb-6 space-y-2" {...props} />,
+    ol: ({ node: _node, ...props }: any) => <ol className="list-decimal pl-6 mb-6 space-y-2 text-slate-700 marker:text-indigo-600" {...props} />,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    a: ({ node, ...props }: any) => <a className="text-orange-500 hover:text-orange-400 no-underline font-semibold transition-colors" {...props} />,
+    a: ({ node: _node, ...props }: any) => <a className="text-indigo-600 hover:text-cyan-600 no-underline font-semibold transition-colors" {...props} />,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    blockquote: ({ node, ...props }: any) => <blockquote className="border-l-4 border-primary pl-4 py-1 mb-6 italic bg-surface-container/30 rounded-r" {...props} />,
+    blockquote: ({ node: _node, ...props }: any) => <blockquote className="border-l-4 border-indigo-600 pl-4 py-2 mb-6 italic bg-slate-50 text-slate-700 rounded-r" {...props} />,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    table: ({ node, ...props }: any) => <div className="overflow-x-auto mb-8"><table className="w-full text-left border-collapse" {...props} /></div>,
+    table: ({ node: _node, ...props }: any) => <div className="overflow-x-auto mb-8"><table className="w-full text-left border-collapse border border-slate-200" {...props} /></div>,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    th: ({ node, ...props }: any) => <th className="border-b border-outline-variant py-3 px-4 font-semibold text-on-surface bg-surface-container" {...props} />,
+    th: ({ node: _node, ...props }: any) => <th className="border-b border-slate-200 py-3 px-4 font-bold text-black bg-slate-50" {...props} />,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    td: ({ node, ...props }: any) => <td className="border-b border-outline-variant/30 py-3 px-4" {...props} />,
+    td: ({ node: _node, ...props }: any) => <td className="border-b border-slate-100 py-3 px-4 text-slate-700" {...props} />,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    img: ({ node, alt, src, ...props }: any) => (
+    img: ({ node: _node, alt, src, ...props }: any) => (
       <span className="my-8 flex flex-col items-center">
-        <img src={src} alt={alt} className="rounded-xl max-w-full" {...props} />
-        {alt && <span className="text-sm text-center block mt-2 opacity-70">{alt}</span>}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={src}
+          alt={alt ? `${alt} - SofaIPTV Tutorial` : `${post.title} - SofaIPTV Tutorial`}
+          title={alt || `${post.title} | SofaIPTV`}
+          className="rounded-xl max-w-full shadow-md"
+          {...props}
+        />
+        {alt && <span className="text-sm text-center block mt-2 text-slate-500">{alt}</span>}
       </span>
     ),
   };
 
   return (
-    <main className="flex-grow pt-32 pb-24 px-margin-mobile md:px-margin-desktop max-w-[1024px] mx-auto w-full relative z-10 text-format-blog">
+    <main className="flex-grow pt-6 sm:pt-8 pb-24 px-margin-mobile md:px-margin-desktop max-w-[1024px] mx-auto w-full relative z-10 text-format-blog">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
@@ -183,20 +203,20 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         />
       )}
 
-      <Link href="/blog" className="inline-flex items-center text-primary hover:text-primary-container mb-8 transition-colors group font-semibold">
+      <Link href="/blog" className="inline-flex items-center text-indigo-600 hover:text-cyan-600 mb-8 transition-colors group font-semibold">
         <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
         Back to Blog
       </Link>
 
-      <article className="bg-white border border-black/10 rounded-2xl p-6 md:p-12">
+      <article className="bg-white border border-black/10 rounded-2xl p-6 md:p-12 shadow-sm">
         <header className="mb-10 text-center">
-          <span className="inline-block px-3 py-1 bg-tertiary/20 text-tertiary rounded-full font-label-caps text-label-caps mb-4 w-max border border-tertiary/30">
+          <span className="inline-block px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full font-bold text-xs mb-4 w-max border border-indigo-200">
             {post.category}
           </span>
-          <h1 className="font-display-md md:font-display-lg text-display-md md:text-display-lg text-on-surface mb-6">
+          <h1 className="text-3xl md:text-5xl font-black text-black mb-6 leading-tight">
             {post.title}
           </h1>
-          <div className="flex items-center justify-center gap-4 text-on-surface-variant font-label-lg text-label-lg opacity-80">
+          <div className="flex items-center justify-center gap-4 text-slate-500 text-sm">
             <span>{post.date}</span>
             <span>•</span>
             <span>{post.author}</span>
@@ -204,27 +224,18 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         </header>
 
         {post.coverImage && (
-          <div className="mb-12 rounded-xl overflow-hidden relative w-full h-[300px] md:h-[500px]">
+          <div className="mb-12 rounded-2xl overflow-hidden relative w-full h-[300px] md:h-[500px] shadow-lg">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={post.coverImage}
-              alt={post.title}
+              alt={`${post.title} - SofaIPTV Guide`}
+              title={`${post.title} | SofaIPTV`}
               className="w-full h-full object-cover"
             />
           </div>
         )}
 
-        <div className="prose prose-lg max-w-none text-on-surface-variant 
-          prose-headings:text-on-surface prose-headings:font-headline-md 
-          prose-a:text-primary hover:prose-a:text-primary-container
-          prose-strong:text-on-surface prose-strong:font-bold
-          prose-code:text-secondary prose-code:bg-surface-container/50 prose-code:px-1 prose-code:rounded
-          prose-pre:bg-surface-container prose-pre:border prose-pre:border-outline-variant
-          prose-blockquote:border-l-primary prose-blockquote:bg-surface-container/30 prose-blockquote:py-1 prose-blockquote:px-4 prose-blockquote:not-italic
-          prose-img:rounded-xl
-          prose-th:text-on-surface prose-th:border-b prose-th:border-outline-variant prose-th:py-2
-          prose-td:border-b prose-td:border-outline-variant/50 prose-td:py-2"
-        >
+        <div className="prose prose-lg max-w-none text-slate-700">
           {(() => {
             const blocks = beforeFaq.split(/(?=\n## )/);
             
@@ -252,7 +263,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
           {faqs.length > 0 && (
             <div className="mt-12 mb-8">
-              <h2 className="text-2xl font-bold mb-6 text-on-surface">Frequently Asked Questions</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-black">Frequently Asked Questions</h2>
               <ArticleFAQAccordion faqs={faqs} />
             </div>
           )}
@@ -272,26 +283,27 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           .slice(0, 3);
         if (relatedPosts.length === 0) return null;
         return (
-          <section className="mt-16 pt-12 border-t border-outline-variant/30">
-            <h2 className="font-headline-lg text-2xl font-bold text-on-surface mb-8">Related Articles</h2>
+          <section className="mt-16 pt-12 border-t border-slate-200">
+            <h2 className="text-2xl font-bold text-black mb-8">Related Articles</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {relatedPosts.map((relPost) => (
                 <Link href={`/blog/${relPost.slug}`} key={relPost.id}>
-                  <article className="glass-panel rounded-xl overflow-hidden flex flex-col group cursor-pointer hover:-translate-y-1 transition-transform duration-300 h-full border border-black/10 hover:border-primary/50">
+                  <article className="rounded-2xl overflow-hidden flex flex-col group cursor-pointer hover:-translate-y-1 transition-all duration-300 h-full border border-black/10 hover:border-indigo-500/40 shadow-sm bg-white">
                     <div className="h-40 relative overflow-hidden shrink-0">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        alt={relPost.title}
+                        alt={`${relPost.title} - SofaIPTV Tutorial`}
+                        title={`${relPost.title} | SofaIPTV`}
                         src={relPost.coverImage || "/blog/high-quality-iptv-service.webp"}
                       />
                     </div>
-                    <div className="p-5 flex flex-col flex-grow bg-surface-container-lowest/50">
-                      <span className="text-xs text-tertiary font-bold mb-2">{relPost.category}</span>
-                      <h3 className="font-title-md text-base font-bold text-on-surface mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                    <div className="p-5 flex flex-col flex-grow bg-white">
+                      <span className="text-xs text-indigo-600 font-bold mb-2">{relPost.category}</span>
+                      <h3 className="text-base font-bold text-black mb-2 line-clamp-2 group-hover:text-indigo-600 transition-colors">
                         {relPost.title}
                       </h3>
-                      <p className="text-xs text-on-surface-variant line-clamp-2 mt-auto opacity-70">
+                      <p className="text-xs text-slate-500 line-clamp-2 mt-auto">
                         {relPost.date}
                       </p>
                     </div>
@@ -305,4 +317,3 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     </main>
   );
 }
-

@@ -1,17 +1,25 @@
+import type { Metadata } from "next";
 import ResellerPageContent from "@/components/reseller/ResellerPageContent";
 
-export const metadata = {
-  title: "Become an IPTV Reseller | Start Your IPTV Business - IPTV Fiesta",
+export const metadata: Metadata = {
+  title: "SofaIPTV Reseller Program - High-Margin IPTV Business Panel & Wholesale Credits",
   description:
-    "Join the IPTV Fiesta Reseller Program. High-margin IPTV reseller panel, custom credit packages, sub-reseller management, and 24/7 dedicated support.",
+    "Start your IPTV business with SofaIPTV. Access the official Xtream Codes reseller panel with custom credit packages, sub-reseller management, unlimited free test trials, and 24/7 dedicated support.",
   alternates: {
     canonical: "/reseller",
+  },
+  openGraph: {
+    title: "SofaIPTV Reseller Program - High-Margin IPTV Business Panel & Wholesale Credits",
+    description:
+      "Start your IPTV business with SofaIPTV. Access the official Xtream Codes reseller panel with custom credit packages, sub-reseller management, unlimited free test trials, and 24/7 dedicated support.",
+    url: "/reseller",
+    type: "website",
   },
 };
 
 export default function ResellerPage() {
   return (
-    <main className="flex-grow pt-4">
+    <main className="flex-grow">
       <ResellerPageContent />
     </main>
   );
